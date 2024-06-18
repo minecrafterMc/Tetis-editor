@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HTML</title>
+  
+  <!-- HTML -->
+  
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h3>Main</h3>
+  <p>Name:</p><input id="name">
+  <p>time limit (0 for infinite):</p><input min="-1" type="number" id="time">
+  <p>speed:</p><input min="0" type="number" id="speed">
+  <p>Lifes (0 for infinite):</p><input min="-1" type="number" id="lives">
+  <p>Point penalty for loosing a life:</p><input type="number" id="ppenalty">
+  <p>Time penalty for loosing a life:</p><input type="number" id="tpenalty">
+  <p>Point multiplier:</p><input min="0" type="number" id="multi">
+  <hr>
+  <h3>Colors</h3>
+  <button onclick="addNewColor()">add new</button><button onclick="removeColor()">remove</button>
+  <div id="colors">
+    
+  </div>
+  <hr>
+  <h3>Shapes</h3>
+  <button onclick="addCompleteShape()">new shape</button><button onclick="removeShape()">remove shape</button>
+  <div id="blocks"></div>
+  <button onclick="toggleMods()">enable/disable mods</button>
+  <div id="mods">
+    <p>on load:</p><input id="onLoad">
+  <p>every tick:</p><input id="tick">
+  <p>on block fall:</p><input id="onBlockFall">
+  <p>on line cleared:</p><input id="onLineCleared">
+  <p>on player death:</p><input id="onDeath">
+  </div>
+  <button onclick="compile()">download</button>
+  <!-- Project -->
+  <script src="main.js"></script>
+</body>
+</html>
