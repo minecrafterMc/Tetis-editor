@@ -16,7 +16,7 @@ function addNewColor(){
   let div = create("div");
   div.id = "colorMaster-"+colorId;
   let inputs = [];
-  let names = ["name","Shape color","background color","trail color","fallen color","text color"];
+  let names = ["name","Shape color","Background color","Trail color","Fallen color","Text color"];
   let codeNames = ["name","shapecolor","emptycolor","trailcolor","fallencolor","textcolor"];
   if (colorId == 0) {
   let namedata = create("p");
@@ -30,13 +30,16 @@ function addNewColor(){
     inputs[i] = create("input");
     inputs[i].id = "color-"+colorId+"-"+i;
     if (i != 0){inputs[i].type = "color";}
+    else{inputs[i].type="text";
+      inputs[i].placeholder="Color name";
+    }
     let text = create("p");
     text.innerHTML = names[i];
-    div.appendChild(text);
+    if(i!=0){
+    div.appendChild(text);}
     div.appendChild(inputs[i]);
     i++;
   }
-  div.appendChild(create("hr"));
   colors.appendChild(div);
   colorId++;
 }
@@ -58,7 +61,6 @@ shapeText = "shape " + (blockId+1) + " rotation 3";
 mDiv.appendChild(addNewShape());
 shapeText = "shape " + (blockId+1) + " rotation 4";
 mDiv.appendChild(addNewShape());
-mDiv.appendChild(create("hr"));
 shapes.appendChild(mDiv);
 blockId++;
 }
@@ -79,7 +81,6 @@ function addNewShape(){
     }
     i++;
   }
-  div.appendChild(create("hr"));
   sBlockId++;
   return div;
 }
@@ -197,11 +198,14 @@ function toggleMods(){
   if (mods){
     mods = !mods;
     getE("mods").style.display = "none";
+    getE("mod").style.backgroundColor="#ff2626";
   }
   else{
     mods = !mods;
     getE("mods").style.display = "block";
+    getE("mod").style.backgroundColor="#27db66";
   }
 }
 addNewColor();
 addCompleteShape();
+toggleMods();

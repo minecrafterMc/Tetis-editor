@@ -15,33 +15,50 @@
 </head>
 
 <body>
+  
   <h3>Main</h3>
-  <p>Name:</p><input id="name">
-  <p>time limit (0 for infinite):</p><input min="-1" type="number" id="time">
-  <p>speed:</p><input min="0" type="number" id="speed">
-  <p>Lifes (0 for infinite):</p><input min="-1" type="number" id="lives">
-  <p>Point penalty for loosing a life:</p><input type="number" id="ppenalty">
-  <p>Time penalty for loosing a life:</p><input type="number" id="tpenalty">
-  <p>Point multiplier:</p><input min="0" type="number" id="multi">
-  <hr>
+  <div class="main">
+ <input type=text id="name" placeholder="Name">
+<br>
+  <input min="-1" type="number" id="time" placeholder="Time limit (0 for infinite)">
+  <br>
+  <input min="0" type="number" id="speed" placeholder="Speed">
+  <br>
+  <input min="-1" type="number" id="lives" placeholder="Lives (0 for infinite)">
+  <br>
+  <input type="number" id="ppenalty" placeholder="Point penalty for losing a life">
+  <br>
+  <input type="number" id="tpenalty" placeholder="Time penalty for losing a life">
+  <br>
+  <input min="0" type="number" id="multi" placeholder="Point multiplier">
+  </div>
   <h3>Colors</h3>
-  <button onclick="addNewColor()">add new</button><button onclick="removeColor()">remove</button>
+  <button class="add" onclick="addNewColor()">Add</button><button class="remove" onclick="removeColor()">Remove</button>
+  <br>
+  <br>
   <div id="colors">
     
   </div>
-  <hr>
   <h3>Shapes</h3>
-  <button onclick="addCompleteShape()">new shape</button><button onclick="removeShape()">remove shape</button>
+  <button class="add" onclick="addCompleteShape()">Add</button><button class="remove" onclick="removeShape()">Remove</button>
+  <br>
+  <br>
   <div id="blocks"></div>
-  <button onclick="toggleMods()">enable/disable mods</button>
+  <br>
+  <button id="mod" onclick="toggleMods()">Enable/Disable mods</button>
+  <br>
+  <br>
   <div id="mods">
-    <p>on load:</p><input id="onLoad">
-  <p>every tick:</p><input id="tick">
-  <p>on block fall:</p><input id="onBlockFall">
-  <p>on line cleared:</p><input id="onLineCleared">
-  <p>on player death:</p><input id="onDeath">
+    
+  <input class="mo" placeholder="On load" id="onLoad">
+  <input class="mo" placeholder="Every tick" id="tick">
+  <input class="mo" placeholder="On block fall" id="onBlockFall">
+  <input class="mo" placeholder="On line cleared" id="onLineCleared">
+  <input class="mo" placeholder="On player death" id="onDeath">
   </div>
-  <button onclick="compile()">download</button>
+  <br>
+  <br>
+  <button class="down" onclick="compile()">Download</button>
   <!-- Project -->
   <script src="main.js"></script>
 </body>

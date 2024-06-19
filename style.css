@@ -1,3 +1,75 @@
+@font-face {
+  font-family: RaidenFromMetalGearRising;
+  src: url(Marksman.otf);
+}
+html{
+  font-family: RaidenFromMetalGearRising, monospace;
+}
 body {
-    font-size: 15pt;
+    font-size: 25px;
+    font-family: RaidenFromMetalGearRising, monospace;
+}
+input[type=text],input[type=number],.mo{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 12px 0;
+  display: inline-block;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input:hover{
+  background-color: #c7c7c7;
+}
+input[type=color]{
+  width: 150px;
+  height: 150px;
+  
+}
+div{
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.add, .down{
+  background-color: #27db66;
+  border: 0px;
+  border-radius: 15px;
+  font-family: RaidenFromMetalGearRising;
+  width: 15%;
+  height: 20px;
+  font-size: 20px;
+}
+.down{
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+  font-size: 48px;
+}
+.add:hover,.down:hover{
+  background-color: #209e4c;
+}
+.remove{
+  background-color: #ff2626;
+  border: 0px;
+  border-radius: 15px;
+  font-family: RaidenFromMetalGearRising;
+  width: 17%;
+  height: 20px;
+  font-size: 20px;
+}
+.remove:hover{
+  background-color: #c73434;
+}
+#mod{
+  background-color: #27db66;
+  border: 0px;
+  border-radius: 15px;
+  font-family: RaidenFromMetalGearRising;
+  width: 40%;
+  height: 50px;
+  font-size: 20px;
+  
 }
