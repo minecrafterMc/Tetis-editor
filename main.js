@@ -16,7 +16,7 @@ function addNewColor(){
   let div = create("div");
   div.id = "colorMaster-"+colorId;
   let inputs = [];
-  let names = ["name","Shape color","Background color","Trail color","Fallen color","Text color"];
+  let names = ["Color Name","Shape color","Background color","Trail color","Fallen color","Text color"];
   let codeNames = ["name","shapecolor","emptycolor","trailcolor","fallencolor","textcolor"];
   if (colorId == 0) {
   let namedata = create("p");
@@ -31,7 +31,7 @@ function addNewColor(){
     inputs[i].id = "color-"+colorId+"-"+i;
     if (i != 0){inputs[i].type = "color";}
     else{inputs[i].type="text";
-      inputs[i].placeholder="Color name";
+      inputs[i].placeholder=names[0];
     }
     let text = create("p");
     text.innerHTML = names[i];
@@ -40,6 +40,15 @@ function addNewColor(){
     div.appendChild(inputs[i]);
     i++;
   }
+  if (colorId % 2 == 0){
+    div.style.backgroundColor = "#a6a4a4"
+    //div.style.width = "100%";
+  }
+  else{
+    div.style.backgroundColor = "#c4bebe";
+  }
+  div.style.marginBottom = "20px";
+  //div.appendChild(create("hr").style.height = "");
   colors.appendChild(div);
   colorId++;
 }
@@ -53,14 +62,24 @@ function removeColor(){
 function addCompleteShape(){
   let mDiv = create("div");
   mDiv.id = "blockMaster-"+blockId;
+  let mCent = create("center");
   shapeText = "shape " + (blockId +1) + " rotation 1";
-  mDiv.appendChild(addNewShape());
+  mCent.appendChild(addNewShape());
   shapeText = "shape " + (blockId+1) + " rotation 2";
-mDiv.appendChild(addNewShape());
+mCent.appendChild(addNewShape());
 shapeText = "shape " + (blockId+1) + " rotation 3";
-mDiv.appendChild(addNewShape());
+mCent.appendChild(addNewShape());
 shapeText = "shape " + (blockId+1) + " rotation 4";
-mDiv.appendChild(addNewShape());
+mCent.appendChild(addNewShape());
+if (blockId % 2 == 0) {
+  mDiv.style.backgroundColor = "#a6a4a4"
+  //div.style.width = "100%";
+}
+else {
+  mDiv.style.backgroundColor = "#c4bebe";
+}
+mDiv.style.marginBottom = "20px";
+mDiv.appendChild(mCent);
 shapes.appendChild(mDiv);
 blockId++;
 }
@@ -82,6 +101,8 @@ function addNewShape(){
     i++;
   }
   sBlockId++;
+  div.style.marginBottom = "10px";
+  div.style.padding = "5px";
   return div;
 }
 function removeShape(){
@@ -205,6 +226,52 @@ function toggleMods(){
     getE("mods").style.display = "block";
     getE("mod").style.backgroundColor="#27db66";
   }
+}
+function openFile()
+{
+  let input = document.createElement('input');
+input.type = 'file';
+input.onchange = e => { 
+   let file = e.target.files[0]; 
+   var reader = new FileReader();
+   reader.readAsText(file,'UTF-8');
+   reader.onload = readerEvent => {
+      let content = readerEvent.target.result;
+      loadf(content);
+   }
+
+}
+
+input.click();
+}
+function loadf(jsonf){
+  jsonf = JSON.parse(jsonf);
+  console.log(jsonf);
+  getE("name").value = jsonf.name;
+  getE("time").value = jsonf.time;
+  getE("speed").value = 1000 / jsonf.updateTimer;
+  getE("lives").value = jsonf.lives;
+  getE("ppenalty").value = jsonf.ppenalty;
+  getE("tpenalty").value = jsonf.tpenalty;
+  getE("multi").value = jsonf.multi;
+  let i = 0;
+  while (i < jsonf.colors.length - 1){
+    addNewColor();
+    i++;
+  }
+  i = 0;
+  while (i < (jsonf.blocks.length - 1) / 4 - 1) {
+  addCompleteShape();
+  i++;
+}
+i = 0;
+let j = 0;
+while (i < jsonf.colors.length){
+  j = 0;
+  while (j < jsonf.colors[i].length){
+    
+  }
+}
 }
 addNewColor();
 addCompleteShape();
