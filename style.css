@@ -63,6 +63,18 @@ div{
 .remove:hover{
   background-color: #c73434;
 }
+#replace{
+  background-color: #c9bf00;
+border: 0px;
+border-radius: 15px;
+font-family: RaidenFromMetalGearRising;
+width: 170px;
+height: 40px;
+font-size: 20px;
+}
+#replace:hover{
+  background-color: #8a7700;
+}
 #mod{
   background-color: #27db66;
   border: 0px;
