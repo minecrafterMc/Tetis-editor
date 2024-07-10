@@ -26,6 +26,19 @@ input[type=color]{
   height: 150px;
   
 }
+img{
+  width: 100%;
+  margin-top: 0px;
+  /*padding: 0px 20px;
+margin: 0px 0;*/
+display: inline-block;
+}
+.main-t-l{
+  width: 85%;
+}
+.main-t-r{
+  width: 15%;
+}
 div{
   border-radius: 10px;
   background-color: #f2f2f2;
@@ -84,4 +97,16 @@ font-size: 20px;
   height: 50px;
   font-size: 20px;
   
+}
+#guide{
+  position: fixed;
+  display: none;
+  border-radius: 10px;
+background-color: #f2f2f2;
+padding: 20px;
+margin-left: 5px;
+margin-right: 5px;
+}
+#guide-close{
+  align: 20px;
 }
