@@ -7,6 +7,7 @@ var shapeText = "rotation 1";
 var json = {};
 var mods = false;
 var codeNames = ["name", "shapecolor", "emptycolor", "trailcolor", "fallencolor", "textcolor"];
+const infoBlocks = {"name":["Name","The name of your custom mode"],"desc":["Description","A description of your custom mode"],"time":["Time limit","The time limit. Set to 0 or less for infinite time"],"speed":["Speed","How often the game updates. The game ticks (updates) every 1000 ms. / speed."],"lives":["Lives","How many times the player needs to fail to loose. Set 0 or less for infinite lives"],"ppenalty":["Point penalty","How many points should the player loose if they loose a live"],"tpenalty":["Time penalty","How much time should be substracted from the timer if the player looses a life"],"multi":["Point multiplier","By how much should the player's points be multiplied whenever they get them"]}
 const defaultBlocks = [
         [
             false, false, false, false, false, true, false, false, false, true, true, false, false, true, false, false, 1, 2, 1, 3
@@ -248,6 +249,7 @@ function getMinMax(arr) {
 
 function compile() {
 	json.name = getE("name").value;
+	json.desc = getE("desc").value;
 	json.time = getE("time").value;
 	json.updateTimer = 1000 / getE("speed").value;
 	json.lives = getE("lives").value;
@@ -287,6 +289,7 @@ function compile() {
 	json.onBlockFall = getE("onBlockFall").value;
 	json.onLineCleared = getE("onLineCleared").value;
 	json.onDeath = getE("onDeath").value;
+	json.onLooseLife = getE("onLooseLife").value;
 	json.blocks.splice(0, 0, [
          false,
          false,
@@ -405,6 +408,11 @@ function loadf(jsonf) {
 		}
 		i++;
 	}
+}
+function displayInfo(info) {
+  getE("guide").style.display = "block";
+  getE("guide-title").innerHTML = infoBlocks[info][0];
+  getE("guide-desc").innerHTML = infoBlocks[info][1];
 }
 addNewColor();
 addCompleteShape();
