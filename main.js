@@ -104,7 +104,11 @@ function create(element) {
 function getE(id) {
 	return document.getElementById(id);
 }
-
+function standardize_color(str){
+    var ctx = document.createElement("canvas").getContext("2d");
+    ctx.fillStyle = str;
+    return ctx.fillStyle;
+}
 function addNewColor() {
 	let div = create("div");
 	div.id = "colorMaster-" + colorId;
@@ -248,6 +252,7 @@ function getMinMax(arr) {
 }
 
 function compile() {
+  json.version = "1.0";
 	json.name = getE("name").value;
 	json.desc = getE("desc").value;
 	json.time = getE("time").value;
@@ -345,15 +350,15 @@ function openFile()
 		reader.readAsText(file, 'UTF-8');
 		reader.onload = readerEvent => {
 			let content = readerEvent.target.result;
+			getE("loading").style.display = "block";
 			loadf(content);
 		}
 
 	}
-
 	input.click();
 }
 function addDefaultShapes(){
-	let answer = prompt("WARNING: this will replace all of your shapes with default shapes. if you want to continue, type 'yes'");
+	let answer = prompt("WARNING: this will replace all of your shapes with default ones. if you want to continue, type 'yes'");
 	if (answer == "yes"){
 		let b = blockId;
 		for(let a = 0;a < b;a++){
@@ -376,14 +381,26 @@ function addDefaultShapes(){
 }
 function loadf(jsonf) {
 	jsonf = JSON.parse(jsonf);
-	console.log(jsonf);
+
 	getE("name").value = jsonf.name;
 	getE("time").value = jsonf.time;
+	getE("desc").value = jsonf.desc;
 	getE("speed").value = 1000 / jsonf.updateTimer;
 	getE("lives").value = jsonf.lives;
 	getE("ppenalty").value = jsonf.ppenalty;
 	getE("tpenalty").value = jsonf.tpenalty;
 	getE("multi").value = jsonf.multi;
+	if (jsonf.enableMods){
+	  getE("onLoad").value = jsonf.onLoad;
+	  getE("tick").value = jsonf.tick;
+	  getE("onLoad").value = jsonf.onBlockFall;
+	  getE("onLoad").value = jsonf.onLineCleared;
+	  getE("onLoad").value = jsonf.onDeath;
+	  getE("onLooseLife").value = jsonf.onLooseLife;
+	  if (!mods){
+	    toggleMods();
+	  }
+	}
 	let i = 0;
 	while (i < jsonf.colors.length - 1) {
 		addNewColor();
@@ -396,18 +413,26 @@ function loadf(jsonf) {
 	}
 	i = 0;
 	let j = 0;
-	console.log(jsonf.colors.length)
 	while (i < jsonf.colors.length) {
 		j = 0;
 		console.log(i + " " + JSON.stringify(jsonf.colors[i]))
-		console.log(codeNames.length);
 		while (j < codeNames.length) {
-			getE("color-" + i + "-" + j).value = jsonf.colors[i][codeNames[j]];
-			console.log(getE("color-" + i + "-" + j));
+			getE("color-" + i + "-" + j).value = standardize_color(jsonf.colors[i][codeNames[j]]);
 			j++;
 		}
 		i++;
 	}
+	i = 0;
+	j = 0;
+	while (i < sBlockId){
+	  j = 0;
+	  while (j < 15){
+	    getE("block-"+i+"-"+j).checked = jsonf.blocks[i][j];
+	    j++;
+	  }
+	  i++;
+	}
+	getE("loading").style.display = "none";
 }
 function displayInfo(info) {
   getE("guide").style.display = "block";
