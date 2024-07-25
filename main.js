@@ -7,7 +7,7 @@ var shapeText = "rotation 1";
 var json = {};
 var mods = false;
 var codeNames = ["name", "shapecolor", "emptycolor", "trailcolor", "fallencolor", "textcolor"];
-const infoBlocks = {"name":["Name","The name of your custom mode"],"desc":["Description","A description of your custom mode"],"time":["Time limit","The time limit. Set to 0 or less for infinite time"],"speed":["Speed","How often the game updates. The game ticks (updates) every 1000 ms. / speed."],"lives":["Lives","How many times the player needs to fail to loose. Set 0 or less for infinite lives"],"ppenalty":["Point penalty","How many points should the player loose if they loose a live"],"tpenalty":["Time penalty","How much time should be substracted from the timer if the player looses a life"],"multi":["Point multiplier","By how much should the player's points be multiplied whenever they get them"]}
+const infoBlocks = {"name":["Name","The name of your custom mode"],"author":["Author","The name of this mode's creator"],"desc":["Description","A description of your custom mode"],"time":["Time limit","The time limit. Set to 0 or less for infinite time"],"speed":["Speed","How often the game updates. The game ticks (updates) every 1000 ms. / speed."],"lives":["Lives","How many times the player needs to fail to loose. Set 0 or less for infinite lives"],"ppenalty":["Point penalty","How many points should the player loose if they loose a live"],"tpenalty":["Time penalty","How much time should be substracted from the timer if the player looses a life"],"multi":["Point multiplier","By how much should the player's points be multiplied whenever they get them"]}
 const defaultBlocks = [
         [
             false, false, false, false, false, true, false, false, false, true, true, false, false, true, false, false, 1, 2, 1, 3
@@ -255,6 +255,7 @@ function compile() {
   json.version = "1.0";
 	json.name = getE("name").value;
 	json.desc = getE("desc").value;
+	json.author = getE("author").value;
 	json.time = getE("time").value;
 	json.updateTimer = 1000 / getE("speed").value;
 	json.lives = getE("lives").value;
@@ -383,6 +384,7 @@ function loadf(jsonf) {
 	jsonf = JSON.parse(jsonf);
 
 	getE("name").value = jsonf.name;
+	getE("author").value = jsonf.author;
 	getE("time").value = jsonf.time;
 	getE("desc").value = jsonf.desc;
 	getE("speed").value = 1000 / jsonf.updateTimer;

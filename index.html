@@ -23,7 +23,7 @@
     <h3 id="guide-title">lorem ipsum</h3>
     <p id="guide-desc">dolor sit amet</p>
     </div>
-  <button onclick="openFile()">Load From File</button><button>Load From URL</button>
+  <button onclick="openFile()" class="add" style="height: 40px;">Load From File</button><button class="add" style="height: 40px;">Load From URL</button>
   <h3>Main</h3>
   <div class="main">
     <table>
@@ -35,6 +35,14 @@
           <img src="info.png" onclick="displayInfo('name')">
         </td>
       </tr>
+      <tr>
+  <td class="main-t-l">
+    <input type=text id="author" placeholder="Author">
+  </td>
+  <td class="main-t-r">
+    <img src="info.png" onclick="displayInfo('author')">
+  </td>
+</tr>
       <tr>
   <td class="main-t-l">
     <input type=text id="desc" placeholder="Description">
